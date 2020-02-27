@@ -1,15 +1,9 @@
 import { join } from "path"
+import { GenerateBoiler } from "boiler-dev"
 
-import {
-  SetupBoiler,
-  PromptBoiler,
-  InstallBoiler,
-  TeardownBoiler,
-} from "boiler-dev"
-
-export const installBoiler: InstallBoiler = async ({
-  destDir,
+export const generate: GenerateBoiler = async ({
   files,
+  rootDirPath,
 }) => {
   const actions = []
 
@@ -21,7 +15,7 @@ export const installBoiler: InstallBoiler = async ({
 
       actions.push({
         action: "write",
-        path: join(destDir, ".vscode", name),
+        path: join(rootDirPath, ".vscode", name),
         source,
       })
     }
