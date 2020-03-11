@@ -1,25 +1,13 @@
-import { join } from "path"
-import { GenerateBoiler } from "boiler-dev"
+import { ActionBoiler } from "boiler-dev"
 
-export const generate: GenerateBoiler = async ({
-  files,
-  cwdPath,
-}) => {
+export const generate: ActionBoiler = async () => {
   const actions = []
 
-  for (const file of files) {
-    const { name } = file
-
-    if (name === "tasks.json") {
-      const { source } = file
-
-      actions.push({
-        action: "write",
-        path: join(cwdPath, ".vscode", name),
-        source,
-      })
-    }
-  }
+  actions.push({
+    action: "write",
+    path: ".vscode/tasks.json",
+    sourcePath: "tasks.json",
+  })
 
   return actions
 }
